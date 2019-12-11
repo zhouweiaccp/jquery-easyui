@@ -42,3 +42,8 @@ bower search for `jquery-easyui-bower` or `jquery.easyui`.
 * v1.4.3  2015-07-03 同步EasyUI v1.4.3
 * v1.4.2  2015-03-08 同步EasyUI v1.4.2
 * v1.4.1  2014-11-06 增加了版本说明
+
+
+## UI
+* [ligerui](http://api.ligerui.com/)
+* [dwz_jui](https://gitee.com/dwzteam/dwz_jui/)
