@@ -7,6 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="../../themes/icon.css" />
 	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="easyloader.js"></script>
+	<script type="text/javascript" src="jquery.parser.js"></script>
 	<script type="text/javascript" src="jquery.tree.js"></script>
 	<script type="text/javascript" src="jquery.combotree.js"></script>
 </head>
@@ -14,14 +16,7 @@
 <body>
 	<h2>Basic ComboTree../../jquery.easyui.min.js</h2>
 	<p>Click the right arrow button to show the tree panel.</p>
-	<div style="margin:20px 0"></div>
-	<div class="easyui-panel" style="width:100%;max-width:400px;padding:30px 60px;">
-		<div style="margin-bottom:20px">
-			<input class="easyui-combotree"
-				data-options="url:'tree_data1.json',method:'get',label:'Select Node:',labelPosition:'top'"
-				style="width:100%">
-		</div>
-	</div>
+
 	<input id="ProjectTree" class="easyui-combotree" style="width: 300px;" />
 	document.docmain = "192.168.253.125";
 	$("#ProjectTree").combotree({
@@ -45,7 +40,30 @@
 
 	});
 	<script>
+		$("#ProjectTree").combotree({
+			data: [{
+				"id": 1,
+				"text": "My Documents",
+				"children": []
+			}],
+			valueField: "id",
+			textField: "text",
+			lines: true,
+			queryParams: {
+				ParamType: "Init",
+				Action: "GetProjectTree",
+				M: Math.random()
+			},
+			onBeforeSelect: function (node) {
+				debugger;
+				if (!$(this).tree('isLeaf', node.target)) {
+					$(this).combo("showPanel");
+					return false;// combotree如何实现只允许选择叶子节点 https://www.cnblogs.com/zhaoyl9/p/11278054.html
+				}
 
+			}
+
+		});
 	</script>
 </body>
 
