@@ -1,0 +1,1 @@
+https://github.com/cocoo/easyui-bootstrap/tree/gh-pages/themes
