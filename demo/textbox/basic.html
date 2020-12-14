@@ -8,12 +8,86 @@
 	<link rel="stylesheet" type="text/css" href="../demo.css">
 	<script type="text/javascript" src="../../jquery.min.js"></script>
 	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<script>
+
+$.extend($.fn.textbox.defaults.rules, {
+    number : {
+        validator : function(value, param) {
+            return /^[0-9]*$/.test(value);
+        },
+        message : "请输入数字"
+    },
+    teltel : {
+        validator : function(value, param) {
+            var reg =  /^((\+?86 )|(\(\+86\)))?1\d{10}$/;
+            return reg.test(value);
+        },
+        message : "请输入手机号+86 18251167272"
+    },
+    checkLength: {
+        validator: function(value, param){
+            return param[0] >= get_length(value);
+        },
+        message: '请输入最大{0}位字符'
+    },
+    specialCharacter: {
+        validator: function(value, param){
+            var reg = new RegExp("[`~!@#$^&*()=|{}':;'\\[\\]<>~！@#￥……&*（）——|{}【】‘；：”“'、？]");
+            return !reg.test(value);
+        },
+        message: '不允许输入特殊字符'
+    },
+    englishLowerCase  : {// 验证英语小写
+        validator : function(value) {
+            return /^[a-z]+$/.test(value);
+        },
+        message : '请输入小写字母'
+    }
+});
+var Validate = {
+            isTel: function (s) {
+                var patrn = /^((\+?86)|(\(\+86\)))?\d{3,4}-\d{7,8}(-\d{3,4})?$/
+                if (!patrn.exec(s)) return false
+                return true
+            },
+
+            isMobile: function (value) {
+                var validateReg = /^((\+?86)|(\(\+86\)))?1\d{10}$/;
+                return validateReg.test(value);
+            },
+
+            cellPhone: function () {
+                var cellPhoneNumber = $("#txtCellPhone").val();
+                if (!Validate.isMobile(cellPhoneNumber)) {
+                    alert("手机号码格式不正确");
+                    return false;
+                } else {
+                    alert("您的手机号码格式是正确的");
+                }
+            },
+
+            telePhone: function () {
+                var telePhoneNumber = $("#txttelePhone").val();
+                if (!Validate.isTel(telePhoneNumber)) {
+                    alert("电话号码格式不正确");
+                    return false;
+                } else {
+                    alert("您的电话号码格式是正确的");
+                }
+            }
+        }
+
+	</script>
 </head>
 <body>
 	<h2>Basic TextBox</h2>
 	<p>The textbox allows a user to enter information.</p>
 	<div style="margin:20px 0;"></div>
 	<div class="easyui-panel" title="Register" style="width:100%;max-width:400px;padding:30px 60px;">
+		<div style="margin-bottom:20px">
+			
+			<input class="easyui-textbox" label="请输入tel:" labelPosition="top" data-options="prompt:'Enter a email address...',validType:'teltel'" style="width:100%;">
+		</div>
 		<div style="margin-bottom:20px">
 			<input class="easyui-textbox" label="Email:" labelPosition="top" data-options="prompt:'Enter a email address...',validType:'email'" style="width:100%;">
 		</div>
