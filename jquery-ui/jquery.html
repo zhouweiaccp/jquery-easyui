@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-1.7.1.min.js"></script>
+    <script src="./jquery-ui-1.8.18.custom.min.js"></script>
+    <link type="text/css" href="./jquery-ui-1.8.18.custom/css/base/jquery.ui.all.css" rel="stylesheet" />
+</head>
+<body> 
+    
+    <div>
+        <span class="ui2"  id="btn" >sswwwwwsss</span>
+    </div>
+    <div id="dialog-confirm" title="Empty the recycle bin?" style="display: none">
+        <p>
+            <span class="" style="float: left; margin: 0 7px 20px 0;"></span>
+            These items will be permanently deleted and cannot be recovered. Are you sure?</p>
+
+    </div>
+  
+    <script>
+
+$("#btn").click(function() {
+    var jq = window.top.$ || window.$;
+                var array = [{
+                    text: 'ok',
+                    click: function () {
+                        jq(this).dialog("close");
+                        if (callBack != undefined) {
+                            callBack();
+                        }
+                    }
+                }];
+                if (true) {
+                    array.push({
+                        text: 'cancle',
+                        click: function () {
+                            jq(this).dialog("close");
+                        }
+                    });
+                }
+                jq('<span style="padding-top:20px;min-height:30px;display:inline-block;">木木木木木木森</span>"').dialog({
+                    height: 35,
+                    width: 200,
+                    title: "<div style='margin-top:5px;color:#414141'>" + "" + "</div>",
+                    modal: true,
+                    resizable: false,
+                    buttons: array
+                }).width(190).height(50);
+ });
+
+    </script>
+</body>
+</html>
